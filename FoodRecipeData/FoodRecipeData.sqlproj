@@ -56,5 +56,63 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\storedProcedures" />
+    <Folder Include="bin\Debug" />
+    <Folder Include="bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Unit.sql" />
+    <Build Include="dbo\Tables\Ingredient.sql" />
+    <Build Include="dbo\Tables\Ingredient_Category.sql" />
+    <Build Include="dbo\Tables\Recipe_Ingredient.sql" />
+    <Build Include="dbo\Tables\Recipe.sql" />
+    <Build Include="dbo\Tables\Recipe_Step.sql" />
+    <Build Include="dbo\Tables\CookBook.sql" />
+    <Build Include="dbo\storedProcedures\spIngredientCategory_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spIngredientCategory_Get.sql" />
+    <Build Include="dbo\storedProcedures\spIngredientCategory_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spIngredientCategory_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spIngredientCategory_Update.sql" />
+    <None Include="bin\Debug\FoodRecipeData_2.publish.sql" />
+    <Build Include="dbo\storedProcedures\spIngredient_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spIngredient_Get.sql" />
+    <Build Include="dbo\storedProcedures\spIngredient_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spIngredient_Update.sql" />
+    <Build Include="dbo\storedProcedures\spIngredient_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spUnit_Get.sql" />
+    <Build Include="dbo\storedProcedures\spUnit_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spUnit_Update.sql" />
+    <Build Include="dbo\storedProcedures\spUnit_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spUnit_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeStep_Get.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeStep_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeStep_Update.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeStep_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredient_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredient_Get.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredient_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredient_Update.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredient_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spRecipe_Get.sql" />
+    <Build Include="dbo\storedProcedures\spRecipe_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spRecipe_Update.sql" />
+    <Build Include="dbo\storedProcedures\spRecipe_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spRecipe_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredients_DeleteAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeStep_DeleteAll.sql" />
+    <Build Include="dbo\Tables\Recipe_Category.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeCategory_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeCategory_Get.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeCategory_Insert.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeCategory_Update.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeCategory_Delete.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="FoodRecipeData.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FoodRecipeData.publish.xml" />
   </ItemGroup>
 </Project>
