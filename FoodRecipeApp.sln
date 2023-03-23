@@ -5,18 +5,14 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FoodRecipeData", "FoodRecipeData\FoodRecipeData.sqlproj", "{76FCC084-4D0A-4ACB-8F20-9D44CCD2A21A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodRecipeUI", "FoodRecipeUI\FoodRecipeUI.csproj", "{803010F4-78F0-4B31-9DF6-86057DB3FA0C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodRecipeDataManagerLibrary", "FoodRecipeDataManagerLibrary\FoodRecipeDataManagerLibrary.csproj", "{E24A7339-B873-4EBA-BBBC-D0148CD1186D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodRecipeUILibrary", "FoodRecipeUILibrary\FoodRecipeUILibrary.csproj", "{F57E6786-BA08-4F35-8A2D-9EB4FE17FE5A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65F13C2D-BB66-47DC-AC18-CC1C148B9890}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodRecipeDataManager", "FoodRecipeDataManager\FoodRecipeDataManager.csproj", "{C901478B-54DF-4B97-8056-59DD81F36D20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodRecipeDataManager", "FoodRecipeDataManager\FoodRecipeDataManager.csproj", "{C901478B-54DF-4B97-8056-59DD81F36D20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,20 +26,10 @@ Global
 		{76FCC084-4D0A-4ACB-8F20-9D44CCD2A21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76FCC084-4D0A-4ACB-8F20-9D44CCD2A21A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76FCC084-4D0A-4ACB-8F20-9D44CCD2A21A}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{803010F4-78F0-4B31-9DF6-86057DB3FA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{803010F4-78F0-4B31-9DF6-86057DB3FA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{803010F4-78F0-4B31-9DF6-86057DB3FA0C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{803010F4-78F0-4B31-9DF6-86057DB3FA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{803010F4-78F0-4B31-9DF6-86057DB3FA0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{803010F4-78F0-4B31-9DF6-86057DB3FA0C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{E24A7339-B873-4EBA-BBBC-D0148CD1186D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E24A7339-B873-4EBA-BBBC-D0148CD1186D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E24A7339-B873-4EBA-BBBC-D0148CD1186D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E24A7339-B873-4EBA-BBBC-D0148CD1186D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F57E6786-BA08-4F35-8A2D-9EB4FE17FE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F57E6786-BA08-4F35-8A2D-9EB4FE17FE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F57E6786-BA08-4F35-8A2D-9EB4FE17FE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F57E6786-BA08-4F35-8A2D-9EB4FE17FE5A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C901478B-54DF-4B97-8056-59DD81F36D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C901478B-54DF-4B97-8056-59DD81F36D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C901478B-54DF-4B97-8056-59DD81F36D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
