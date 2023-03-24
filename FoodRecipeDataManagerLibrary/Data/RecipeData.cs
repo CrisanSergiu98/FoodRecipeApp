@@ -102,7 +102,7 @@ public class RecipeData : IRecipeData
         }
     }
 
-    public async Task DeleteIngredientCategory(int recipeId)
+    public async Task DeleteRecipe(int recipeId)
     {
         using (SqlDataAccess insertData = new SqlDataAccess(_config))
         {

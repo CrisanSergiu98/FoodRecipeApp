@@ -132,11 +132,11 @@ public static class RecipeEndpoint
         }
     }
 
-    private static async Task<IResult> DeleteRecipe(int id, IIngredientData data)
+    private static async Task<IResult> DeleteRecipe(int id, IRecipeData data)
     {
         try
         {
-            await data.DeleteIngredient(id);
+            await data.DeleteRecipe(id);
             return Results.Ok();
         }
         catch (Exception ex)
