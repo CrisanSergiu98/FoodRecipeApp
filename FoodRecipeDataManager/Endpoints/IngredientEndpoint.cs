@@ -1,5 +1,6 @@
 ﻿using FoodRecipeDataManagerLibrary.Data;
 using FoodRecipeDataManagerLibrary.Models;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace FoodRecipeDataManager.Endpoints;
@@ -21,14 +22,26 @@ public static class IngredientEndpoint
         {
             var result = await ingredientData.GetAllIngredient();
 
-            foreach(var i in result)
+            List<IngredientModel> returnResult= new List<IngredientModel>();
+
+            foreach (var i in result)
             {
-                var resultedCategory = await categoryData.GetIngredientCategory(i.CategoryId);                
-                
-                i.Category = resultedCategory;
+                var resultedCategory = await categoryData.GetIngredientCategory(i.CategoryId);
+
+                IngredientModel ingredient= new IngredientModel
+                {
+                    Id = i.Id,
+                    Name = i.Name,
+                    Description = i.Description,
+                    PictureUrl = i.PictureUrl,
+                    MesurementType = i.MesurementType,
+                    Category = resultedCategory
+                };
+
+                returnResult.Add(ingredient);        
             }
 
-            return Results.Ok(result);
+            return Results.Ok(returnResult);
         }
         catch (Exception ex)
         {
@@ -44,9 +57,19 @@ public static class IngredientEndpoint
             var result = await ingredientData.GetIngredient(id);            
             if (result == null) return Results.NotFound();
 
-            result.Category = await categoryData.GetIngredientCategory(result.CategoryId);
+            var resultedCategory = await categoryData.GetIngredientCategory(result.CategoryId);
 
-            return Results.Ok(result);
+            IngredientModel returnResult = new IngredientModel
+            {
+                Id = result.Id,
+                Name = result.Name,
+                Description = result.Description,
+                PictureUrl = result.PictureUrl,
+                MesurementType = result.MesurementType,
+                Category = resultedCategory
+            };            
+
+            return Results.Ok(returnResult);
         }
         catch (Exception ex)
         {
@@ -55,7 +78,7 @@ public static class IngredientEndpoint
         }
     }
 
-    private static async Task<IResult> InsertIngredient(IngredientModel model, IIngredientData ingredientData, IIngredientCategoryData categoryData)
+    private static async Task<IResult> InsertIngredient(IngredientDBModel model, IIngredientData ingredientData, IIngredientCategoryData categoryData)
     {    
         try
         {
@@ -69,7 +92,7 @@ public static class IngredientEndpoint
         }
     }
 
-    private static async Task<IResult> UpdateIngredient(IngredientModel model, IIngredientData data)
+    private static async Task<IResult> UpdateIngredient(IngredientDBModel model, IIngredientData data)
     {
         try
         {

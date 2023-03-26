@@ -118,7 +118,7 @@ public static class RecipeEndpoint
         }
     }
 
-    private static async Task<IResult> UpdateRecipe(IngredientModel model, IIngredientData data)
+    private static async Task<IResult> UpdateRecipe(IngredientDBModel model, IIngredientData data)
     {
         try
         {
