@@ -19,13 +19,13 @@ public class RecipeData : IRecipeData
         _config = config;
     }
 
-    public Task<IEnumerable<RecipeModel>> GetAllRecipe() =>
-    _data.LoadData<RecipeModel, dynamic>("dbo.spRecipe_GetAll", new { });
+    public Task<IEnumerable<RecipeDBModel>> GetAllRecipe() =>
+    _data.LoadData<RecipeDBModel, dynamic>("dbo.spRecipe_GetAll", new { });
 
-    public async Task<RecipeModel?> GetRecipe(int id) =>
-        (await _data.LoadData<RecipeModel, dynamic>("dbo.spRecipe_Get", new { Id = id })).FirstOrDefault();
+    public async Task<RecipeDBModel?> GetRecipe(int id) =>
+        (await _data.LoadData<RecipeDBModel, dynamic>("dbo.spRecipe_Get", new { Id = id })).FirstOrDefault();
 
-    public Task InsertRecipe(RecipeModel recipe) =>
+    public Task InsertRecipe(RecipeDBModel recipe) =>
         _data.SaveData("dbo.spRecipe_Insert",
             new
             {
@@ -78,7 +78,7 @@ public class RecipeData : IRecipeData
                         Description = recipe.Description,
                         Published = recipe.Published,
                         PictureUrl = recipe.PictureUrl,
-                        Category = recipe.CategoryId
+                        Category = recipe.Category.Id
                     });
                     //Update ingredients
                     foreach (var i in recipe.Ingredients)

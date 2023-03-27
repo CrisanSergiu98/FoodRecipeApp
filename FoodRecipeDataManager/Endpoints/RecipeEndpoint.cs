@@ -1,5 +1,6 @@
 ﻿using FoodRecipeDataManagerLibrary.Data;
 using FoodRecipeDataManagerLibrary.Models;
+using System.Runtime.InteropServices;
 
 namespace FoodRecipeDataManager.Endpoints;
 
@@ -23,6 +24,8 @@ public static class RecipeEndpoint
         {
             var result = await recipeData.GetAllRecipe();
 
+            List<RecipeModel> returnResult = new List<RecipeModel>();
+
             foreach (var i in result)
             {
                 var recipeId = i.Id;
@@ -33,20 +36,37 @@ public static class RecipeEndpoint
 
                 var stepsResult = await recipeStepData.GetRecipeSteps(recipeId);
 
-                i.Category = resultedCategory;
+                //Create a new return object and 
+                RecipeModel recipe = new RecipeModel
+                {
+                    Id = i.Id,
+                    Title = i.Title,
+                    Description = i.Description,
+                    Published = i.Published,
+                    CreateDate = i.CreateDate,
+                    PictureUrl = i.PictureUrl,
+                    UserId = i.UserId,
+                    //Add the category
+                    Category = resultedCategory
+                };
 
+                //Add the ingredients
                 foreach (var y in ingredientsResult)
                 {
-                    i.Ingredients.Add(y);
+                    recipe.Ingredients.Add(y);
                 }
 
+                //Add the steps
                 foreach (var y in stepsResult)
                 {
-                    i.Steps.Add(y);
+                    recipe.Steps.Add(y);
                 }
+
+                //Add the details from the DB Model
+                returnResult.Add(recipe);
             }
 
-            return Results.Ok(result);
+            return Results.Ok(returnResult);
         }
         catch (Exception ex)
         {
@@ -62,29 +82,39 @@ public static class RecipeEndpoint
     {
         try
         {
-            var result = await recipeData.GetRecipe(id);
-
-            var recipeId = result.Id;
+            var result = await recipeData.GetRecipe(id);            
 
             var resultedCategory = await categoryData.GetRecipeCategory(result.CategoryId);
 
-            var ingredientsResult = await recipeIngredientData.GetAllRecipeIngredient(recipeId);
+            var ingredientsResult = await recipeIngredientData.GetAllRecipeIngredient(result.Id);
 
-            var stepsResult = await recipeStepData.GetRecipeSteps(recipeId);
+            var stepsResult = await recipeStepData.GetRecipeSteps(result.Id);
 
-            result.Category = resultedCategory;
+            //Create a new return object and 
+            RecipeModel recipe = new RecipeModel
+            {
+                Id = result.Id,
+                Title = result.Title,
+                Description = result.Description,
+                Published = result.Published,
+                CreateDate = result.CreateDate,
+                PictureUrl = result.PictureUrl,
+                UserId = result.UserId,
+                //Add the category
+                Category = resultedCategory
+            };
 
             foreach (var y in ingredientsResult)
             {
-                result.Ingredients.Add(y);
+                recipe.Ingredients.Add(y);
             }
 
             foreach (var y in stepsResult)
             {
-                result.Steps.Add(y);
+                recipe.Steps.Add(y);
             }
 
-            return Results.Ok(result);
+            return Results.Ok(recipe);
         }
         catch (Exception ex)
         {
@@ -97,11 +127,11 @@ public static class RecipeEndpoint
     {
         try
         {
-            var resultedCategory = await categoryData.GetRecipeCategory(model.CategoryId);
+            var resultedCategory = await categoryData.GetRecipeCategory(model.Category.Id);
 
             if (resultedCategory != null)
             {
-                await recipeData.InsertRecipe(model);
+                //await recipeData.InsertRecipe(model);
 
                 return Results.Ok();
             }
