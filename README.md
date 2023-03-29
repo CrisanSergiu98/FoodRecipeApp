@@ -13,4 +13,6 @@ Currently the sollution contains:
 
 The published database is not included in the project you will have to publish your own database from the SQL Project.  
 
-Also use /swagger as that's the main UI for the project where the endpoints are accessible. UIs are outside the scope of this project.  
+Also use /swagger as that's the main UI for the project where the endpoints are accessible. UIs are outside the scope of this project. 
+
+There is no data validation implemented yet, but I'm working on it.
