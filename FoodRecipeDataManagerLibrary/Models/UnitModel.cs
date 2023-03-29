@@ -11,6 +11,6 @@ public class UnitModel
     public string Name { get; set; }
     public string Symbol { get; set; }
     public string MesurementType { get; set; }
-    public int MetricUnitValue { get; set; }
+    public float MetricUnitValue { get; set; }
     public int MetricUnitId { get; set; }
 }

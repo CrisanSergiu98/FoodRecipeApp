@@ -40,17 +40,16 @@ public class RecipeData : IRecipeData
     public Task UpdateRecipe(RecipeDBModel recipe)=>
         _data.SaveData("dbo.spRecipe_Update", new 
         {
+            Id=recipe.Id,
             Title = recipe.Title,
             Description = recipe.Description,
-            Published = recipe.Published,
-            CreateDate = recipe.CreateDate,
-            PictureUrl = recipe.PictureUrl,
-            UserId = recipe.UserId,
+            Published = recipe.Published,            
+            PictureUrl = recipe.PictureUrl,            
             CategoryId = recipe.CategoryId
         });
 
     public Task DeleteRecipe(int recipeId) =>
-        _data.SaveData("dbo.spRecipe_Delete", new { RecipeID = recipeId });
+        _data.SaveData("dbo.spRecipe_Delete", new { ID = recipeId });
 
 
 }

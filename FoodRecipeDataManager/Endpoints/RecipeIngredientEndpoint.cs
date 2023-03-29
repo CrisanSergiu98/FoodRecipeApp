@@ -9,19 +9,19 @@ public static class RecipeIngredientEndpoint
 {
     public static void ConfigureRecipeIngredientEndpoints(this WebApplication app)
     {
-        app.MapGet("/RecipeIngredient/{RecipeId}", GetAllRecipeIngredient);
-        app.MapGet("/RecipeIngredient/{RecipeId},{IngredientId}", GetRecipeIngredient);
+        app.MapGet("/RecipeIngredient/{recipeId}", GetAllRecipeIngredient);
+        app.MapGet("/RecipeIngredient/{recipeId},{ingredientId}", GetRecipeIngredient);
         app.MapPost("/RecipeIngredient", InsertRecipeIngredient);
         app.MapPut("/RecipeIngredient", UpdateRecipeIngredient);
-        app.MapDelete("/RecipeIngredient/{RecipeId},{IngredientId}", DeleteRecipeIngredient);
-        app.MapDelete("/RecipeIngredient/{RecipeId}", DeleteAllRecipeIngredient);
+        app.MapDelete("/RecipeIngredient/{recipeId},{ingredientId}", DeleteRecipeIngredient);
+        app.MapDelete("/RecipeIngredient/{recipeId}", DeleteAllRecipeIngredient);
     }
 
-    private static async Task<IResult> GetAllRecipeIngredient( int RecipeId , IRecipeIngredientData data)
+    private static async Task<IResult> GetAllRecipeIngredient( int recipeId , IRecipeIngredientData data)
     {
         try
         {
-            var result = await data.GetAllRecipeIngredient(RecipeId);
+            var result = await data.GetAllRecipeIngredient(recipeId);
             return Results.Ok(result);
         }
         catch (Exception ex)
@@ -31,12 +31,12 @@ public static class RecipeIngredientEndpoint
         }
     }
 
-    private static async Task<IResult> GetRecipeIngredient(int RecipeId, int IngredientId, IRecipeIngredientData data)
+    private static async Task<IResult> GetRecipeIngredient(int recipeId, int ingredientId, IRecipeIngredientData data)
     {
         try
         {
-            await data.GetRecipeIngredient(RecipeId, IngredientId);
-            return Results.Ok();
+            var result = await data.GetRecipeIngredient(recipeId, ingredientId);
+            return Results.Ok(result);
         }
         catch (Exception ex)
         {

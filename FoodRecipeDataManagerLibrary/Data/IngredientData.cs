@@ -29,14 +29,7 @@ public class IngredientData : IIngredientData
         });
 
     public Task UpdateIngredient(IngredientDBModel ingredient) =>
-        _data.SaveData("dbo.spIngredient_Update", new
-        {
-            Name = ingredient.Name,
-            Description = ingredient.Description,
-            PictureUrl = ingredient.PictureUrl,
-            CategoryId = ingredient.CategoryId,
-            MesurementType = ingredient.MesurementType
-        });
+        _data.SaveData("dbo.spIngredient_Update", ingredient);
 
     public Task DeleteIngredient(int id) =>
         _data.SaveData("dbo.spIngredient_Delete", new { Id = id });

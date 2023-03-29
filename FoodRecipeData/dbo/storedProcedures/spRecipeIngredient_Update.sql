@@ -6,5 +6,6 @@
 AS
 begin
 	update dbo.Recipe_Ingredient
-	set RecipeId=@RecipeId,IngredientId=@IngredientId,Quantity=@Quantity,UnitId=@UnitId
+	set Quantity=@Quantity,UnitId=@UnitId
+	where RecipeId=@RecipeId and IngredientId=@IngredientId
 end

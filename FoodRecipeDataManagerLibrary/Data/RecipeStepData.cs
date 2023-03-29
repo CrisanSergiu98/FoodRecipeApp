@@ -29,11 +29,11 @@ public class RecipeStepData : IRecipeStepData
     public Task InsertRecipeStep(RecipeStepModel recipeStep) =>
 	_data.SaveData("dbo.spRecipeStep_Insert", recipeStep);	
 
-	public Task UpdateRecipeSep(RecipeStepModel recipeStep) =>
+	public Task UpdateRecipeStep(RecipeStepModel recipeStep) =>
 		_data.SaveData("dbo.spRecipeStep_Update", recipeStep);
 
 	public Task DeleteRecipeStep(int recipeId, int stepNumber) =>
-		_data.SaveData("dbo.spRecipeStep_Delete", new { RecipeId = recipeId, Number = stepNumber });
+		_data.SaveData("dbo.spRecipeStep_Delete", new { RecipeId = recipeId, StepNumber = stepNumber });
 
     public Task DeleteAllRecipeStep(int recipeId) =>
         _data.SaveData("dbo.spRecipeStep_DeleteAll", new { RecipeId = recipeId });

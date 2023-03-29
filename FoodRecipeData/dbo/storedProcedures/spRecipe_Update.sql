@@ -11,7 +11,7 @@ begin
 	set Title = @Title,
 	[Description]=@Description,
 	Published=@Published,
-	PictureUrl=@CategoryId,
+	PictureUrl=@PictureUrl,
 	CategoryId=@CategoryId
 	where Id=@Id
 end

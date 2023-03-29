@@ -59,6 +59,10 @@ public static class RecipeCategoryEndpoint
     {
         try
         {
+            if (model.Id == 0)
+            {
+                throw new InvalidOperationException("Invalid Id provided.");
+            }
             await data.UpdateRecipeCategory(model);
             return Results.Ok();
         }

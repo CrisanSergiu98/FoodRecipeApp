@@ -107,6 +107,9 @@ public static class RecipeEndpoint
                 Category = resultedCategory
             };
 
+            recipe.Ingredients = new List<RecipeIngredientDBModel>();
+            recipe.Steps = new List<RecipeStepModel>();
+
             foreach (var y in ingredientsResult)
             {
                 recipe.Ingredients.Add(y);

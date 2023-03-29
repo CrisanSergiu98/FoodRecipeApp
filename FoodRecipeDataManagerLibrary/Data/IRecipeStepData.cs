@@ -7,5 +7,6 @@ public interface IRecipeStepData
     Task<IEnumerable<RecipeStepModel>> GetAllRecipeStep(int recipeId);
     Task<RecipeStepModel?> GetRecipeStep(int recipeId, int stepNumber);
     Task InsertRecipeStep(RecipeStepModel recipeStep);
-    Task UpdateRecipeSep(RecipeStepModel recipeStep);
+    Task UpdateRecipeStep(RecipeStepModel recipeStep);
+    Task DeleteAllRecipeStep(int recipeId);
 }
