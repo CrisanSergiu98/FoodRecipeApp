@@ -25,103 +25,32 @@ public class RecipeData : IRecipeData
     public async Task<RecipeDBModel?> GetRecipe(int id) =>
         (await _data.LoadData<RecipeDBModel, dynamic>("dbo.spRecipe_Get", new { Id = id })).FirstOrDefault();
 
-    public Task InsertRecipe(RecipeDBModel recipe) =>
-        _data.SaveData("dbo.spRecipe_Insert",
-            new
-            {
-                Title = recipe.Title,
-                Description = recipe.Description,
-                PictureUrl = recipe.PictureUrl,
-                CategoryId = recipe.CategoryId,
-                UserId = recipe.UserId,
-                Published = recipe.Published
-            });
-
-    public Task InsertRecipeDetails(RecipeModel recipe)
-    {
-        using (SqlDataAccess insertData = new SqlDataAccess(_config))
+    public Task InsertRecipe(RecipeDBModel recipe) => 
+        _data.SaveData("dbo.spRecipe_Insert", new
         {
-            try
-            {
-                //Save ingredients
-                foreach (var i in recipe.Ingredients)
-                {
-                    insertData.SaveDataInTranzaction("dbo.spRecipeIngredient_Insert", i);
-                }
-                //Save Steps
-                foreach (var i in recipe.Steps)
-                {
-                    insertData.SaveDataInTranzaction("dbo.spRecipeStep_Insert", i);
-                }
-                return Task.CompletedTask;
-            }
-            catch (Exception ex)
-            {
-                insertData.RollbackTranzaction();
-                throw;
-            }
-        }
-    }
+            Title=recipe.Title,
+            Description=recipe.Description,
+            Published = false,
+            //CreateDate=recipe.CreateDate,
+            PictureUrl=recipe.PictureUrl,
+            UserId=recipe.UserId,
+            CategoryId=recipe.CategoryId
+        });    
 
-    public Task UpdateRecipe(RecipeModel recipe)
-    {
-        using (SqlDataAccess insertData = new SqlDataAccess(_config))
+    public Task UpdateRecipe(RecipeDBModel recipe)=>
+        _data.SaveData("dbo.spRecipe_Update", new 
         {
-            {
-                try
-                {
-                    insertData.StartTranzaction();
-                    //Update the recipe details
-                    insertData.SaveDataInTranzaction("dbo.spRecipe_Update", new
-                    {
-                        Title = recipe.Title,
-                        Description = recipe.Description,
-                        Published = recipe.Published,
-                        PictureUrl = recipe.PictureUrl,
-                        Category = recipe.Category.Id
-                    });
-                    //Update ingredients
-                    foreach (var i in recipe.Ingredients)
-                    {
-                        insertData.SaveDataInTranzaction("dbo.spRecipeIngredient_Update", i);
-                    }
-                    //Update Steps
-                    foreach (var i in recipe.Steps)
-                    {
-                        insertData.SaveDataInTranzaction("dbo.spRecipeStep_Update", i);
-                    }
-                    return Task.CompletedTask;
+            Title = recipe.Title,
+            Description = recipe.Description,
+            Published = recipe.Published,
+            CreateDate = recipe.CreateDate,
+            PictureUrl = recipe.PictureUrl,
+            UserId = recipe.UserId,
+            CategoryId = recipe.CategoryId
+        });
 
-                }
-                catch (Exception ex)
-                {
-                    insertData.RollbackTranzaction();
-                    throw;
-                }
-            }
-        }
-    }
+    public Task DeleteRecipe(int recipeId) =>
+        _data.SaveData("dbo.spRecipe_Delete", new { RecipeID = recipeId });
 
-    public async Task DeleteRecipe(int recipeId)
-    {
-        using (SqlDataAccess insertData = new SqlDataAccess(_config))
-        {
-            try
-            {
-                insertData.StartTranzaction();
-                //Save the recipe details
-                insertData.SaveDataInTranzaction("dbo.spRecipe_Delete", new { Id = recipeId });
-                //Save ingredients
-                insertData.SaveDataInTranzaction("dbo.spRecipeIngredient_DeleteAll", new { Id = recipeId });
-                //Save Steps
-                insertData.SaveDataInTranzaction("dbo.spRecipeStep_DeleteAll", new { Id = recipeId });
-            }
-            catch (Exception ex)
-            {
-                insertData.RollbackTranzaction();
-                throw;
-            }
-        }
-    }
 
 }

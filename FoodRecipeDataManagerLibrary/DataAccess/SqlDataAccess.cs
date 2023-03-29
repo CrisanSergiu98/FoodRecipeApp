@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 
 namespace MinimalAPIDataAccessLibrary.DBAccess;
-public class SqlDataAccess : ISqlDataAccess, IDisposable
+public class SqlDataAccess : ISqlDataAccess 
 {
     private readonly IConfiguration _config;
 
@@ -27,69 +27,5 @@ public class SqlDataAccess : ISqlDataAccess, IDisposable
 
         await connection.ExecuteAsync(storedProcedure, parameters,
             commandType: CommandType.StoredProcedure);
-    }
-
-    private IDbConnection _connection;
-    private IDbTransaction _tranzaction;
-    private bool isColsed = false;
-
-    //Start Tranzaction
-    public void StartTranzaction(string connectionId = "DefaultDevelopment")
-    { 
-        _connection = new SqlConnection(_config.GetConnectionString(connectionId));
-
-        _connection.Open();
-
-        _tranzaction = _connection.BeginTransaction();
-
-        isColsed = false;
-    }
-
-    public void SaveDataInTranzaction<T>(string storedProcedures, T parameters)
-    {
-        _connection.Execute(storedProcedures, parameters, commandType: CommandType.StoredProcedure, transaction: _tranzaction);
-    }
-
-    public List<T> LoadDataInTranzaction<T, U>(string storedProcedures, U parameters)
-    {
-        List<T> rows = _connection.Query<T>(storedProcedures, parameters,
-                commandType: CommandType.StoredProcedure, transaction: _tranzaction).ToList();
-        return rows;
-    }
-
-    public void CommitTranzaction()
-    {
-        //Apply changes to the db
-        _tranzaction?.Commit();
-        _connection.Close();
-
-        isColsed = true;
-    }
-
-    public void RollbackTranzaction()
-    {
-        //rollback changes
-        _tranzaction?.Rollback();
-        _connection.Close();
-
-        isColsed = true;
-    }
-
-    public void Dispose()
-    {
-        if (!isColsed)
-        {
-            try
-            {
-                CommitTranzaction();
-            }
-            catch
-            {
-                //Log issue
-            }
-        }
-
-        _tranzaction = null;
-        _connection = null;
     }
 }

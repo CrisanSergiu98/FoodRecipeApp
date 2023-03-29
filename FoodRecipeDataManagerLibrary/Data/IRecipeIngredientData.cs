@@ -4,8 +4,10 @@ namespace FoodRecipeDataManagerLibrary.Data;
 public interface IRecipeIngredientData
 {
     Task DeleteRecipeIngredient(int recipeId, int ingredientId);
-    Task<IEnumerable<RecipeIngredientModel>> GetAllRecipeIngredient(int recipeId);
-    Task<RecipeIngredientModel?> GetRecipeIngredient(int recipeId, int ingredientId);
-    Task InsertRecipeIngredient(RecipeIngredientModel recipeIngredient);
-    Task UpdateRecipeIngredient(RecipeIngredientModel recipeIngredient);
+    Task<IEnumerable<RecipeIngredientDBModel>> GetAllRecipeIngredient(int recipeId);
+    Task<RecipeIngredientDBModel?> GetRecipeIngredient(int recipeId, int ingredientId);
+    Task InsertRecipeIngredient(RecipeIngredientDBModel recipeIngredient);
+    Task UpdateRecipeIngredient(RecipeIngredientDBModel recipeIngredient);
+
+    Task DeleteAllRecipeIngredient(int recipeId);
 }

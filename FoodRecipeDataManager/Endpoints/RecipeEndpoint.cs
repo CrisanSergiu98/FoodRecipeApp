@@ -34,7 +34,7 @@ public static class RecipeEndpoint
 
                 var ingredientsResult = await recipeIngredientData.GetAllRecipeIngredient(recipeId);
 
-                var stepsResult = await recipeStepData.GetRecipeSteps(recipeId);
+                var stepsResult = await recipeStepData.GetAllRecipeStep(recipeId);
 
                 //Create a new return object and 
                 RecipeModel recipe = new RecipeModel
@@ -49,6 +49,9 @@ public static class RecipeEndpoint
                     //Add the category
                     Category = resultedCategory
                 };
+
+                recipe.Ingredients = new List<RecipeIngredientDBModel>();
+                recipe.Steps = new List<RecipeStepModel>();
 
                 //Add the ingredients
                 foreach (var y in ingredientsResult)
@@ -88,7 +91,7 @@ public static class RecipeEndpoint
 
             var ingredientsResult = await recipeIngredientData.GetAllRecipeIngredient(result.Id);
 
-            var stepsResult = await recipeStepData.GetRecipeSteps(result.Id);
+            var stepsResult = await recipeStepData.GetAllRecipeStep(result.Id);
 
             //Create a new return object and 
             RecipeModel recipe = new RecipeModel
@@ -123,15 +126,15 @@ public static class RecipeEndpoint
         }
     }
 
-    private static async Task<IResult> InsertRecipe(RecipeModel model, IRecipeData recipeData, IRecipeCategoryData categoryData)
+    private static async Task<IResult> InsertRecipe(RecipeDBModel model, IRecipeData recipeData, IRecipeCategoryData categoryData)
     {
         try
         {
-            var resultedCategory = await categoryData.GetRecipeCategory(model.Category.Id);
+            var resultedCategory = await categoryData.GetRecipeCategory(model.CategoryId);
 
             if (resultedCategory != null)
             {
-                //await recipeData.InsertRecipe(model);
+                await recipeData.InsertRecipe(model);
 
                 return Results.Ok();
             }
@@ -148,11 +151,11 @@ public static class RecipeEndpoint
         }
     }
 
-    private static async Task<IResult> UpdateRecipe(IngredientDBModel model, IIngredientData data)
+    private static async Task<IResult> UpdateRecipe(RecipeDBModel model, IRecipeData data)
     {
         try
         {
-            await data.UpdateIngredient(model);
+            await data.UpdateRecipe(model);
             return Results.Ok();
         }
         catch (Exception ex)

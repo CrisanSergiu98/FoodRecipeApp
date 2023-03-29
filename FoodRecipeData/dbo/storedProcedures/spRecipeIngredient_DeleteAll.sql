@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spRecipeIngredients_DeleteAll]
+﻿CREATE PROCEDURE [dbo].[spRecipeIngredient_DeleteAll]
 	@RecipeId int
 AS
 begin

@@ -12,32 +12,25 @@ public class IngredientData : IIngredientData
         _data = data;
     }
 
-
     public Task<IEnumerable<IngredientDBModel>> GetAllIngredient() => 
         _data.LoadData<IngredientDBModel, dynamic>("dbo.spIngredient_GetAll", new { });
-
-
-
-
 
     public async Task<IngredientDBModel?> GetIngredient(int id) =>
         (await _data.LoadData<IngredientDBModel, dynamic>("dbo.spIngredient_Get", new { Id = id })).FirstOrDefault();
 
     public Task InsertIngredient(IngredientDBModel ingredient) =>
-        _data.SaveData("dbo.spIngredient_Insert",
-            new
-            {
-                Name = ingredient.Name,
-                Description = ingredient.Description,
-                PictureUrl = ingredient.PictureUrl,
-                CategoryId = ingredient.CategoryId,
-                MesurementType = ingredient.MesurementType
-            });
+        _data.SaveData("dbo.spIngredient_Insert", new
+        {
+            Name=ingredient.Name,
+            Description=ingredient.Description,
+            PictureUrl=ingredient.PictureUrl,
+            CategoryId=ingredient.CategoryId,
+            MesurementType=ingredient.MesurementType
+        });
 
     public Task UpdateIngredient(IngredientDBModel ingredient) =>
         _data.SaveData("dbo.spIngredient_Update", new
         {
-            Id=ingredient.Id,   
             Name = ingredient.Name,
             Description = ingredient.Description,
             PictureUrl = ingredient.PictureUrl,

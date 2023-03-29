@@ -100,7 +100,6 @@
     <Build Include="dbo\storedProcedures\spRecipe_Update.sql" />
     <Build Include="dbo\storedProcedures\spRecipe_Delete.sql" />
     <Build Include="dbo\storedProcedures\spRecipe_GetAll.sql" />
-    <Build Include="dbo\storedProcedures\spRecipeIngredients_DeleteAll.sql" />
     <Build Include="dbo\storedProcedures\spRecipeStep_DeleteAll.sql" />
     <Build Include="dbo\Tables\Recipe_Category.sql" />
     <Build Include="dbo\storedProcedures\spRecipeCategory_GetAll.sql" />
@@ -108,11 +107,10 @@
     <Build Include="dbo\storedProcedures\spRecipeCategory_Insert.sql" />
     <Build Include="dbo\storedProcedures\spRecipeCategory_Update.sql" />
     <Build Include="dbo\storedProcedures\spRecipeCategory_Delete.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeIngredient_DeleteAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipeStep_GetAll.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FoodRecipeData.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FoodRecipeData.publish.xml" />
   </ItemGroup>
 </Project>

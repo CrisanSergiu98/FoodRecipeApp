@@ -3,6 +3,6 @@
 	[RecipeId] INT NOT NULL PRIMARY KEY, 
     [Number] INT NOT NULL, 
     [Description] NVARCHAR(MAX) NOT NULL, 
-    [PictureUrl] NVARCHAR(MAX) NULL
+    [PictureUrl] NVARCHAR(MAX) NOT NULL
 
 )

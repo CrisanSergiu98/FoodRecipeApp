@@ -16,12 +16,17 @@ public class RecipeStepData : IRecipeStepData
 		_data = data;
 	}
 
+	public Task<IEnumerable<RecipeStepModel>> GetAllRecipeStep(int recipeId)
+		=> _data.LoadData<RecipeStepModel, dynamic>("dbo.spRecipeStep_GetAll", new { Id = recipeId });
 
+    public async Task<RecipeStepModel?> GetRecipeStep(int recipeId, int stepNumber) => 
+		(await _data.LoadData<RecipeStepModel, dynamic>("dbo.spRecipeStep_Get", new 
+		{ 
+			RecipeId = recipeId, 
+			StepNumber=stepNumber 
+		})).FirstOrDefault();
 
-	public Task<IEnumerable<RecipeStepModel>> GetRecipeSteps(int recipeId)
-		=> _data.LoadData<RecipeStepModel, dynamic>("dbo.spRecipeStep_Get", new { RecipeId = recipeId });
-
-	public Task InsertRecipeStep(RecipeStepModel recipeStep) =>
+    public Task InsertRecipeStep(RecipeStepModel recipeStep) =>
 	_data.SaveData("dbo.spRecipeStep_Insert", recipeStep);	
 
 	public Task UpdateRecipeSep(RecipeStepModel recipeStep) =>
@@ -29,4 +34,7 @@ public class RecipeStepData : IRecipeStepData
 
 	public Task DeleteRecipeStep(int recipeId, int stepNumber) =>
 		_data.SaveData("dbo.spRecipeStep_Delete", new { RecipeId = recipeId, Number = stepNumber });
+
+    public Task DeleteAllRecipeStep(int recipeId) =>
+        _data.SaveData("dbo.spRecipeStep_DeleteAll", new { RecipeId = recipeId });
 }

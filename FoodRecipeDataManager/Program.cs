@@ -66,5 +66,7 @@ app.ConfigureRecipeCategoryEndpoints();
 app.ConfigureIngredientEndpoints();
 app.ConfigureUnitEndpoints();
 app.ConfigureRecipeEndpoints();
+app.ConfigureRecipeIngredientEndpoints();
+app.ConfigureSteptEndpoints();
 
 app.Run();

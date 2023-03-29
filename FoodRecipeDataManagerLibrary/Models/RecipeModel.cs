@@ -15,7 +15,7 @@ public class RecipeModel
     public string PictureUrl { get; set; }
     public string UserId { get; set; }    
     public RecipeCategoryModel Category { get; set; }
-    public List<RecipeIngredientModel> Ingredients { get; set; }
+    public List<RecipeIngredientDBModel> Ingredients { get; set; }
     public List<RecipeStepModel> Steps { get; set; }
 
 }

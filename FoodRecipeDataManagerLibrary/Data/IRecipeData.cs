@@ -7,5 +7,5 @@ public interface IRecipeData
     Task<IEnumerable<RecipeDBModel>> GetAllRecipe();
     Task<RecipeDBModel?> GetRecipe(int id);
     Task InsertRecipe(RecipeDBModel recipe);
-    Task UpdateRecipe(RecipeModel recipe);
+    Task UpdateRecipe(RecipeDBModel recipe);
 }

@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodRecipeDataManagerLibrary.Models;
-public class RecipeIngredientModel
+public class RecipeIngredientDBModel
 {
     public int RecipeId { get; set; }
     public int IngredientId { get; set; }
-    public float Quanity { get; set; }
-    public UnitModel Unit { get; set; }
+    public float Quantity { get; set; }    
     public int UnitId { get; set; }
 }
