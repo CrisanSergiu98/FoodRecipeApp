@@ -1,16 +1,14 @@
-﻿using System;
+﻿using FoodRecipeDataManagerLibrary.Models.BaseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodRecipeDataManagerLibrary.Models;
-public class IngredientModel
+public class IngredientModel:IngredientBaseModel
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string PictureUrl { get; set; }
+    public int Id { get; set; }    
     public IngredientCategoryModel Category { get; set; }    
-    public string MesurementType { get; set; }
+    
 }
