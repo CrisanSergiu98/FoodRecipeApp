@@ -1,9 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[spRecipe_Update]
 	@Id int,
-	@Title nvarchar(50),
-	@Description nvarchar(MAX),
+	@Title nvarchar(100),
+	@Description nvarchar(500),
 	@Published bit,
-	@PictureUrl nvarchar(MAX),
+	@PictureUrl nvarchar(2048),
 	@CategoryId int
 AS
 begin

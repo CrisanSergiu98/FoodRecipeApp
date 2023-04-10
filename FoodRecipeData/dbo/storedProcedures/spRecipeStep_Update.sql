@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[spRecipeStep_Update]
 	@RecipeId int,
 	@Number int,
-	@Description nvarchar(MAX),
-	@PictureUrl nvarchar(MAX)
+	@Description nvarchar(500),
+	@PictureUrl nvarchar(2048)
 AS
 begin
 	update dbo.Recipe_Step

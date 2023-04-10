@@ -6,6 +6,6 @@ public interface IRecipeData
     Task DeleteRecipe(int recipeId);
     Task<IEnumerable<RecipeDBModel>> GetAllRecipe();
     Task<RecipeDBModel?> GetRecipe(int id);
-    Task InsertRecipe(RecipeDBModel recipe);
+    Task InsertRecipe(RecipeModel recipe);
     Task UpdateRecipe(RecipeDBModel recipe);
 }

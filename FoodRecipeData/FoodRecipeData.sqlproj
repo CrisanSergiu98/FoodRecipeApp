@@ -109,6 +109,7 @@
     <Build Include="dbo\storedProcedures\spRecipeCategory_Delete.sql" />
     <Build Include="dbo\storedProcedures\spRecipeIngredient_DeleteAll.sql" />
     <Build Include="dbo\storedProcedures\spRecipeStep_GetAll.sql" />
+    <Build Include="dbo\storedProcedures\spRecipe_Lookup.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FoodRecipeData.refactorlog" />

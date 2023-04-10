@@ -1,11 +1,14 @@
 ﻿CREATE TABLE [dbo].[Recipe]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Title] NVARCHAR(50) NOT NULL, 
-    [Description] NVARCHAR(MAX) NOT NULL, 
+    [Title] NVARCHAR(100) unique NOT NULL, 
+    [Description] NVARCHAR(500) NOT NULL, 
     [Published] BIT NOT NULL ,
-    [PictureUrl] NVARCHAR(MAX) NOT NULL, 
+    [PictureUrl] NVARCHAR(2048) NOT NULL, 
     [CreateDate] DATETIME2 NOT NULL DEFAULT getutcdate(), 
-    [CategoryId] INT NOT NULL, 
-    [UserId] NVARCHAR(MAX) NOT NULL
+    [CategoryId] INT NOT NULL CONSTRAINT FK_CategoryRecipe FOREIGN KEY ([CategoryId])
+    REFERENCES Recipe_Category(Id), 
+    [UserId] NVARCHAR(50) NOT NULL,
+
+    
 )

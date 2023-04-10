@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[spIngredientCategory_Update]
 	@Id int,
-	@Name nvarchar(50),
-	@Description nvarchar(MAX),
-	@PictureUrl nvarchar(MAX)
+	@Name nvarchar(100),
+	@Description nvarchar(500),
+	@PictureUrl nvarchar(2048)
 AS
 begin
 	update dbo.Ingredient_Category

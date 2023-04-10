@@ -42,8 +42,7 @@ public static class RecipeEndpoint
                     Id = i.Id,
                     Title = i.Title,
                     Description = i.Description,
-                    Published = i.Published,
-                    CreateDate = i.CreateDate,
+                    Published = i.Published,                    
                     PictureUrl = i.PictureUrl,
                     UserId = i.UserId,
                     //Add the category
@@ -99,11 +98,9 @@ public static class RecipeEndpoint
                 Id = result.Id,
                 Title = result.Title,
                 Description = result.Description,
-                Published = result.Published,
-                CreateDate = result.CreateDate,
+                Published = result.Published,                
                 PictureUrl = result.PictureUrl,
-                UserId = result.UserId,
-                //Add the category
+                UserId = result.UserId,                
                 Category = resultedCategory
             };
 
@@ -129,11 +126,11 @@ public static class RecipeEndpoint
         }
     }
 
-    private static async Task<IResult> InsertRecipe(RecipeDBModel model, IRecipeData recipeData, IRecipeCategoryData categoryData)
+    private static async Task<IResult> InsertRecipe(RecipeModel model, IRecipeData recipeData, IRecipeCategoryData categoryData)
     {
         try
         {
-            var resultedCategory = await categoryData.GetRecipeCategory(model.CategoryId);
+            var resultedCategory = await categoryData.GetRecipeCategory(model.Category.Id);
 
             if (resultedCategory != null)
             {

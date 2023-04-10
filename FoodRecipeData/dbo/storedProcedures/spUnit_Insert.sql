@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spUnit_Insert]
-	@Name nvarchar(50),
-	@Symbol nvarchar(50),
-	@MesurementType nvarchar(50),
+	@Name nvarchar(100),
+	@Symbol nvarchar(100),
+	@MesurementType nvarchar(100),
 	@MetricUnitValue float,
 	@MetricUnitId int
 AS
