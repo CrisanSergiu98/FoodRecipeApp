@@ -1,7 +1,16 @@
+using FoodRecipeApplication;
+using FoodRecipeApplication.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ApplicationDbContext>(o =>
+{
+    o.UseSqlite("Data Source=recipes.db");
+});
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
@@ -24,6 +33,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
