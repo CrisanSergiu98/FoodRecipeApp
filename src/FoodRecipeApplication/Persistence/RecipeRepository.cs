@@ -22,26 +22,29 @@ public class RecipeRepository
         return await _dbContext.Recipes.FindAsync(id);
     }
 
-    public async Task AddAsync(Recipe item)
+    public async Task<bool> AddAsync(Recipe item)
     {
         _dbContext.Recipes.Add(item);
-        await _dbContext.SaveChangesAsync();
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
     }
 
-    public async Task UpdateAsync(Recipe item)
+    public async Task<bool> UpdateAsync(Recipe item)
     {
         _dbContext.Recipes.Update(item);
-        await _dbContext.SaveChangesAsync();
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
         var recipe = await _dbContext.Recipes.FindAsync(id);
-
-        if (recipe != null)
+        if (recipe == null)
         {
-            _dbContext.Recipes.Remove(recipe);
-            await _dbContext.SaveChangesAsync();
+            return false;
         }
+        _dbContext.Recipes.Remove(recipe);
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
     }
 }

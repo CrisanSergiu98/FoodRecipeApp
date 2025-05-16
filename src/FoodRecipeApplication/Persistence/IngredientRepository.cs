@@ -22,24 +22,29 @@ public class IngredientRepository
         return await _dbContext.Ingredients.FindAsync(id);
     }
 
-    public async Task Add(Ingredient item)
+    public async Task<bool> Add(Ingredient item)
     {
         _dbContext.Ingredients.Add(item);
-        await _dbContext.SaveChangesAsync();
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
     }
 
-    public async Task Update(Ingredient item)
+    public async Task<bool> Update(Ingredient item)
     {
         _dbContext.Ingredients.Update(item);
-        await _dbContext.SaveChangesAsync();
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
     }
 
-    public async Task Delete(Guid id)
+    public async Task<bool> Delete(Guid id)
     {
         var ingredient = await _dbContext.Ingredients.FindAsync(id);
-        if (ingredient != null)
+        if (ingredient == null)
         {
-            _dbContext.Ingredients.Remove(ingredient);
+            return false;
         }
+        _dbContext.Ingredients.Remove(ingredient);
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
     }
 }
