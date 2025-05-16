@@ -1,0 +1,3 @@
+namespace FoodRecipeApplication.Persistence;
+
+public class ApplicationDbContext: DbContext
