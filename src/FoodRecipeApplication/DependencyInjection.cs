@@ -1,4 +1,5 @@
 using FoodRecipeApplication.Persistence;
+using FoodRecipeApplication.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FoodRecipeApplication;
@@ -9,6 +10,7 @@ public static class DependencyInjecton
     {
         services.AddScoped<RecipeRepository>();
         services.AddScoped<IngredientRepository>();
+        services.AddScoped<RecipeService>();
         return services;
     }
 }
